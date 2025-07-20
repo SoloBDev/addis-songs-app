@@ -52,15 +52,16 @@ export function makeServer() {
           genre: "Pop",
           artistImage: artistImages["Ed Sheeran"],
         },
-        {
+         {
           id: "2",
-          title: "Perfect",
-          artist: "Ed Sheeran",
-          album: "÷ (Divide)",
-          year: 2017,
-          genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          title: "Starboy",
+          artist: "The Weeknd",
+          album: "Starboy",
+          year: 2016,
+          genre: "R&B",
+          artistImage: artistImages["The Weeknd"],
         },
+        
         {
           id: "3",
           title: "Thinking Out Loud",
@@ -74,12 +75,12 @@ export function makeServer() {
         // The Weeknd (3 songs)
         {
           id: "4",
-          title: "Blinding Lights",
-          artist: "The Weeknd",
-          album: "After Hours",
-          year: 2020,
-          genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          title: "Don't Start Now",
+          artist: "Dua Lipa",
+          album: "Future Nostalgia",
+          year: 2019,
+          genre: "Pop",
+          artistImage: artistImages["Dua Lipa"],
         },
         {
           id: "5",
@@ -90,16 +91,16 @@ export function makeServer() {
           genre: "R&B",
           artistImage: artistImages["The Weeknd"],
         },
-        {
+       
+{
           id: "6",
-          title: "Starboy",
-          artist: "The Weeknd",
-          album: "Starboy",
-          year: 2016,
-          genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          title: "Perfect",
+          artist: "Ed Sheeran",
+          album: "÷ (Divide)",
+          year: 2017,
+          genre: "Pop",
+          artistImage: artistImages["Ed Sheeran"],
         },
-
         // Adele (2 songs)
         {
           id: "7",
@@ -141,14 +142,15 @@ export function makeServer() {
         },
 
         // Dua Lipa (3 songs)
+        
         {
           id: "11",
-          title: "Don't Start Now",
-          artist: "Dua Lipa",
-          album: "Future Nostalgia",
-          year: 2019,
-          genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          title: "Blinding Lights",
+          artist: "The Weeknd",
+          album: "After Hours",
+          year: 2020,
+          genre: "R&B",
+          artistImage: artistImages["The Weeknd"],
         },
         {
           id: "12",
