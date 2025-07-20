@@ -10,7 +10,7 @@ import { Song } from './songsSlice';
 const BASE_URL = process.env.API_BASE_URL || '';
 
 function fetchSongsFromAPI() {
-  return axios.get<Song[]>(`${BASE_URL}/users`);
+  return axios.get<Song[]>(`${BASE_URL}/songs`);
 }
 
 function* handleFetchSongs(): Generator<any, void, any> {

@@ -6,9 +6,8 @@ export interface Song {
   artist: string;
   album: string;
   year: number;
-  //just to check if it's working
-  name: string;
-  username: string;
+  genre: string;
+  artistImage: string;
 }
 
 interface SongsState {
