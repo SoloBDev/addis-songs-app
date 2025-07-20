@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import {
@@ -10,8 +10,8 @@ import {
   Song,
 } from "../redux/songs/songsSlice";
 import { RootState } from "../redux/store";
-import SongItem from "./SongItem";
-import SongForm from "./SongForm";
+const SongItem = lazy(() => import("./SongItem"));
+const SongForm = lazy(() => import("./SongForm"));
 
 const Container = styled.div`
   padding: 2em;
@@ -94,7 +94,9 @@ const ModalButton = styled.button<{ variant?: "cancel" | "confirm" }>`
 
 const SongList: React.FC = () => {
   const dispatch = useDispatch();
-  const { songs, loading, error } = useSelector((state: RootState) => state.songs);
+  const { songs, loading, error } = useSelector(
+    (state: RootState) => state.songs
+  );
   const [query, setQuery] = useState("");
   const [editSong, setEditSong] = useState<Song | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -123,7 +125,6 @@ const SongList: React.FC = () => {
     setShowForm(true);
   };
 
-
   const handleDeleteConfirm = () => {
     if (deleteId) {
       dispatch(deleteSongStart(deleteId));
@@ -144,41 +145,53 @@ const SongList: React.FC = () => {
     <Container>
       <Header>
         <Title>Songs Library</Title>
-        <AddButton onClick={() => { setEditSong(null); setShowForm(true); }}>
+        <AddButton
+          onClick={() => {
+            setEditSong(null);
+            setShowForm(true);
+          }}
+        >
           Add New Song
         </AddButton>
       </Header>
 
       {showForm && (
-        <SongForm
-              initialData={editSong || undefined}
-              onSubmit={handleCreateOrUpdate}
-              onCancel={() => {
-                 setShowForm(false);
-                 setEditSong(null);
-              } } isLoading={false}        />
+        <Suspense fallback={<StatusText>{loading && "Loading songs..."}</StatusText>}>
+          <SongForm
+            initialData={editSong || undefined}
+            onSubmit={handleCreateOrUpdate}
+            onCancel={() => {
+              setShowForm(false);
+              setEditSong(null);
+            }}
+            isLoading={false}
+          />
+        </Suspense>
       )}
 
       <SearchInput
-        type="text"
+        type='text'
         value={query}
         onChange={handleSearchChange}
-        placeholder="Search songs by title, artist or genre..."
+        placeholder='Search songs by title, artist or genre...'
       />
 
-      {loading && <StatusText>Loading songs...</StatusText>}
-      {error && <StatusText style={{ color: "red" }}>Error: {error}</StatusText>}
+      {error && (
+        <StatusText style={{ color: "red" }}>Error: {error}</StatusText>
+      )}
       <StatusText>Total Songs: {filteredSongs.length}</StatusText>
 
       {filteredSongs.length > 0 ? (
         <Grid>
           {filteredSongs.map((song) => (
-            <SongItem
-              key={song.id}
-              song={song}
-              onEdit={() => handleEdit(song)}
-              onDelete={() => setDeleteId(song.id)}
-            />
+            <Suspense fallback={<StatusText>{loading && "Loading..."}</StatusText>} key={song.id}>
+              <SongItem
+                key={song.id}
+                song={song}
+                onEdit={() => handleEdit(song)}
+                onDelete={() => setDeleteId(song.id)}
+              />
+            </Suspense>
           ))}
         </Grid>
       ) : (
@@ -192,7 +205,7 @@ const SongList: React.FC = () => {
           <ModalBox onClick={(e) => e.stopPropagation()}>
             <p>Are you sure you want to delete this song?</p>
             <div style={{ textAlign: "right", marginTop: "1em" }}>
-              <ModalButton variant="cancel" onClick={() => setDeleteId(null)}>
+              <ModalButton variant='cancel' onClick={() => setDeleteId(null)}>
                 Cancel
               </ModalButton>
               <ModalButton onClick={handleDeleteConfirm}>Delete</ModalButton>
