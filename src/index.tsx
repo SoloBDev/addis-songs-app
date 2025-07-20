@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { makeServer } from './mirage/server';
 
-if (process.env.NODE_ENV === 'development') {
+if ( (process.env.NODE_ENV === 'development') || process.env.MIRAGE_ENABLED === 'true') {
   makeServer();
 }
 

@@ -1,9 +1,24 @@
 import { createServer, Model, Response } from "miragejs";
+import { Song } from "../redux/songs/songsSlice";
+import { ModelDefinition, Registry } from "miragejs/-types";
+import Schema from "miragejs/orm/schema";
+
+// Define your Mirage model to match your Song interface
+type SongModel = ModelDefinition<Omit<Song, "id"> & { id: string }>;
+
+type AppRegistry = Registry<
+  {
+    song: typeof Model;
+  },
+  {}
+>;
+
+type AppSchema = Schema<AppRegistry>;
 
 export function makeServer() {
   return createServer({
     models: {
-      song: Model.extend({}),
+      song: Model as SongModel,
     },
 
     seeds(server) {
@@ -25,24 +40,11 @@ export function makeServer() {
         "Justin Bieber": "https://i.imgur.com/JustinBieber.jpg",
       };
 
-      // Genres
-      const genres = [
-        "Pop",
-        "Rock",
-        "R&B",
-        "Hip-Hop",
-        "Electronic",
-        "Jazz",
-        "Country",
-        "Funk",
-        "Indie",
-      ];
-
       // 50 REALISTIC SONGS (NO PLACEHOLDERS)
-      const songs = [
+      const songs: Song[] = [
         // Ed Sheeran (3 songs)
         {
-          id: 1,
+          id: "1",
           title: "Shape of You",
           artist: "Ed Sheeran",
           album: "÷ (Divide)",
@@ -51,7 +53,7 @@ export function makeServer() {
           artistImage: artistImages["Ed Sheeran"],
         },
         {
-          id: 2,
+          id: "2",
           title: "Perfect",
           artist: "Ed Sheeran",
           album: "÷ (Divide)",
@@ -60,7 +62,7 @@ export function makeServer() {
           artistImage: artistImages["Ed Sheeran"],
         },
         {
-          id: 3,
+          id: "3",
           title: "Thinking Out Loud",
           artist: "Ed Sheeran",
           album: "x (Multiply)",
@@ -71,7 +73,7 @@ export function makeServer() {
 
         // The Weeknd (3 songs)
         {
-          id: 4,
+          id: "4",
           title: "Blinding Lights",
           artist: "The Weeknd",
           album: "After Hours",
@@ -80,7 +82,7 @@ export function makeServer() {
           artistImage: artistImages["The Weeknd"],
         },
         {
-          id: 5,
+          id: "5",
           title: "Save Your Tears",
           artist: "The Weeknd",
           album: "After Hours",
@@ -89,7 +91,7 @@ export function makeServer() {
           artistImage: artistImages["The Weeknd"],
         },
         {
-          id: 6,
+          id: "6",
           title: "Starboy",
           artist: "The Weeknd",
           album: "Starboy",
@@ -100,7 +102,7 @@ export function makeServer() {
 
         // Adele (2 songs)
         {
-          id: 7,
+          id: "7",
           title: "Hello",
           artist: "Adele",
           album: "25",
@@ -109,7 +111,7 @@ export function makeServer() {
           artistImage: artistImages["Adele"],
         },
         {
-          id: 8,
+          id: "8",
           title: "Rolling in the Deep",
           artist: "Adele",
           album: "21",
@@ -120,7 +122,7 @@ export function makeServer() {
 
         // Coldplay (2 songs)
         {
-          id: 9,
+          id: "9",
           title: "Yellow",
           artist: "Coldplay",
           album: "Parachutes",
@@ -129,7 +131,7 @@ export function makeServer() {
           artistImage: artistImages["Coldplay"],
         },
         {
-          id: 10,
+          id: "10",
           title: "Viva La Vida",
           artist: "Coldplay",
           album: "Viva la Vida or Death and All His Friends",
@@ -140,7 +142,7 @@ export function makeServer() {
 
         // Dua Lipa (3 songs)
         {
-          id: 11,
+          id: "11",
           title: "Don't Start Now",
           artist: "Dua Lipa",
           album: "Future Nostalgia",
@@ -149,7 +151,7 @@ export function makeServer() {
           artistImage: artistImages["Dua Lipa"],
         },
         {
-          id: 12,
+          id: "12",
           title: "Levitating",
           artist: "Dua Lipa",
           album: "Future Nostalgia",
@@ -158,7 +160,7 @@ export function makeServer() {
           artistImage: artistImages["Dua Lipa"],
         },
         {
-          id: 13,
+          id: "13",
           title: "New Rules",
           artist: "Dua Lipa",
           album: "Dua Lipa",
@@ -169,7 +171,7 @@ export function makeServer() {
 
         // Bruno Mars (3 songs)
         {
-          id: 14,
+          id: "14",
           title: "Uptown Funk",
           artist: "Bruno Mars",
           album: "Uptown Special",
@@ -178,7 +180,7 @@ export function makeServer() {
           artistImage: artistImages["Bruno Mars"],
         },
         {
-          id: 15,
+          id: "15",
           title: "Just the Way You Are",
           artist: "Bruno Mars",
           album: "Doo-Wops & Hooligans",
@@ -187,7 +189,7 @@ export function makeServer() {
           artistImage: artistImages["Bruno Mars"],
         },
         {
-          id: 16,
+          id: "16",
           title: "24K Magic",
           artist: "Bruno Mars",
           album: "24K Magic",
@@ -198,7 +200,7 @@ export function makeServer() {
 
         // Taylor Swift (3 songs)
         {
-          id: 17,
+          id: "17",
           title: "Blank Space",
           artist: "Taylor Swift",
           album: "1989",
@@ -207,7 +209,7 @@ export function makeServer() {
           artistImage: artistImages["Taylor Swift"],
         },
         {
-          id: 18,
+          id: "18",
           title: "Love Story",
           artist: "Taylor Swift",
           album: "Fearless",
@@ -216,7 +218,7 @@ export function makeServer() {
           artistImage: artistImages["Taylor Swift"],
         },
         {
-          id: 19,
+          id: "19",
           title: "Shake It Off",
           artist: "Taylor Swift",
           album: "1989",
@@ -227,7 +229,7 @@ export function makeServer() {
 
         // Billie Eilish (2 songs)
         {
-          id: 20,
+          id: "20",
           title: "Bad Guy",
           artist: "Billie Eilish",
           album: "When We All Fall Asleep, Where Do We Go?",
@@ -236,7 +238,7 @@ export function makeServer() {
           artistImage: artistImages["Billie Eilish"],
         },
         {
-          id: 21,
+          id: "21",
           title: "Happier Than Ever",
           artist: "Billie Eilish",
           album: "Happier Than Ever",
@@ -247,7 +249,7 @@ export function makeServer() {
 
         // Drake (3 songs)
         {
-          id: 22,
+          id: "22",
           title: "God's Plan",
           artist: "Drake",
           album: "Scorpion",
@@ -256,7 +258,7 @@ export function makeServer() {
           artistImage: artistImages["Drake"],
         },
         {
-          id: 23,
+          id: "23",
           title: "Hotline Bling",
           artist: "Drake",
           album: "Views",
@@ -265,7 +267,7 @@ export function makeServer() {
           artistImage: artistImages["Drake"],
         },
         {
-          id: 24,
+          id: "24",
           title: "One Dance",
           artist: "Drake",
           album: "Views",
@@ -276,7 +278,7 @@ export function makeServer() {
 
         // Kendrick Lamar (2 songs)
         {
-          id: 25,
+          id: "25",
           title: "HUMBLE.",
           artist: "Kendrick Lamar",
           album: "DAMN.",
@@ -285,7 +287,7 @@ export function makeServer() {
           artistImage: artistImages["Kendrick Lamar"],
         },
         {
-          id: 26,
+          id: "26",
           title: "Alright",
           artist: "Kendrick Lamar",
           album: "To Pimp a Butterfly",
@@ -296,7 +298,7 @@ export function makeServer() {
 
         // BTS (3 songs)
         {
-          id: 27,
+          id: "27",
           title: "Dynamite",
           artist: "BTS",
           album: "BE",
@@ -305,7 +307,7 @@ export function makeServer() {
           artistImage: artistImages["BTS"],
         },
         {
-          id: 28,
+          id: "28",
           title: "Butter",
           artist: "BTS",
           album: "Butter",
@@ -314,7 +316,7 @@ export function makeServer() {
           artistImage: artistImages["BTS"],
         },
         {
-          id: 29,
+          id: "29",
           title: "Boy With Luv",
           artist: "BTS",
           album: "Map of the Soul: Persona",
@@ -325,7 +327,7 @@ export function makeServer() {
 
         // Post Malone (3 songs)
         {
-          id: 30,
+          id: "30",
           title: "Circles",
           artist: "Post Malone",
           album: "Hollywood's Bleeding",
@@ -334,7 +336,7 @@ export function makeServer() {
           artistImage: artistImages["Post Malone"],
         },
         {
-          id: 31,
+          id: "31",
           title: "Sunflower",
           artist: "Post Malone",
           album: "Spider-Man: Into the Spider-Verse",
@@ -343,7 +345,7 @@ export function makeServer() {
           artistImage: artistImages["Post Malone"],
         },
         {
-          id: 32,
+          id: "32",
           title: "Rockstar",
           artist: "Post Malone",
           album: "Beerbongs & Bentleys",
@@ -354,7 +356,7 @@ export function makeServer() {
 
         // Ariana Grande (3 songs)
         {
-          id: 33,
+          id: "33",
           title: "thank u, next",
           artist: "Ariana Grande",
           album: "thank u, next",
@@ -363,7 +365,7 @@ export function makeServer() {
           artistImage: artistImages["Ariana Grande"],
         },
         {
-          id: 34,
+          id: "34",
           title: "7 rings",
           artist: "Ariana Grande",
           album: "thank u, next",
@@ -372,7 +374,7 @@ export function makeServer() {
           artistImage: artistImages["Ariana Grande"],
         },
         {
-          id: 35,
+          id: "35",
           title: "Side to Side",
           artist: "Ariana Grande",
           album: "Dangerous Woman",
@@ -383,7 +385,7 @@ export function makeServer() {
 
         // Justin Bieber (3 songs)
         {
-          id: 36,
+          id: "36",
           title: "Sorry",
           artist: "Justin Bieber",
           album: "Purpose",
@@ -392,7 +394,7 @@ export function makeServer() {
           artistImage: artistImages["Justin Bieber"],
         },
         {
-          id: 37,
+          id: "37",
           title: "Love Yourself",
           artist: "Justin Bieber",
           album: "Purpose",
@@ -401,7 +403,7 @@ export function makeServer() {
           artistImage: artistImages["Justin Bieber"],
         },
         {
-          id: 38,
+          id: "38",
           title: "Stay",
           artist: "Justin Bieber",
           album: "Justice",
@@ -412,7 +414,7 @@ export function makeServer() {
 
         // Additional popular songs to reach 50
         {
-          id: 39,
+          id: "39",
           title: "Levitating",
           artist: "Dua Lipa",
           album: "Future Nostalgia",
@@ -421,7 +423,7 @@ export function makeServer() {
           artistImage: artistImages["Dua Lipa"],
         },
         {
-          id: 40,
+          id: "40",
           title: "Watermelon Sugar",
           artist: "Harry Styles",
           album: "Fine Line",
@@ -430,7 +432,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/HarryStyles.jpg",
         },
         {
-          id: 41,
+          id: "41",
           title: "Stay",
           artist: "The Kid LAROI",
           album: "F*CK LOVE 3",
@@ -439,7 +441,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/TheKidLAROI.jpg",
         },
         {
-          id: 42,
+          id: "42",
           title: "Montero",
           artist: "Lil Nas X",
           album: "Montero",
@@ -448,7 +450,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/LilNasX.jpg",
         },
         {
-          id: 43,
+          id: "43",
           title: "Good 4 U",
           artist: "Olivia Rodrigo",
           album: "SOUR",
@@ -457,7 +459,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/OliviaRodrigo.jpg",
         },
         {
-          id: 44,
+          id: "44",
           title: "Peaches",
           artist: "Justin Bieber",
           album: "Justice",
@@ -466,7 +468,7 @@ export function makeServer() {
           artistImage: artistImages["Justin Bieber"],
         },
         {
-          id: 45,
+          id: "45",
           title: "Kiss Me More",
           artist: "Doja Cat",
           album: "Planet Her",
@@ -475,7 +477,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/DojaCat.jpg",
         },
         {
-          id: 46,
+          id: "46",
           title: "Industry Baby",
           artist: "Lil Nas X",
           album: "Montero",
@@ -484,7 +486,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/LilNasX.jpg",
         },
         {
-          id: 47,
+          id: "47",
           title: "Stay",
           artist: "Post Malone",
           album: "Hollywood's Bleeding",
@@ -493,7 +495,7 @@ export function makeServer() {
           artistImage: artistImages["Post Malone"],
         },
         {
-          id: 48,
+          id: "48",
           title: "Mood",
           artist: "24kGoldn",
           album: "El Dorado",
@@ -502,7 +504,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/24kGoldn.jpg",
         },
         {
-          id: 49,
+          id: "49",
           title: "Drivers License",
           artist: "Olivia Rodrigo",
           album: "SOUR",
@@ -511,7 +513,7 @@ export function makeServer() {
           artistImage: "https://i.imgur.com/OliviaRodrigo.jpg",
         },
         {
-          id: 50,
+          id: "50",
           title: "Save Your Tears (Remix)",
           artist: "The Weeknd",
           album: "After Hours (Deluxe)",
@@ -522,78 +524,91 @@ export function makeServer() {
       ];
 
       // Seed all 50 songs
-      songs.forEach(song => {
-        server.create("song",{
+      songs.forEach((song, index) => {
+        server.create("song", {
           ...song,
-          id: String(song.id), // Ensure ID is a string for Mirage
-         });
+          id: song.id || (index + 1).toString(), // Ensure id is a string
+        });
       });
     },
 
     routes() {
       this.namespace = "api";
+      this.passthrough();
 
-      // CRUD OPERATIONS
-
-      // 1. CREATE - Add new song
-      this.post("/songs", (schema, request) => {
-        const attrs = JSON.parse(request.requestBody);
-        return schema.create('song',attrs);
+      this.post("/songs", (schema: AppSchema, request) => {
+        const attrs = JSON.parse(request.requestBody) as Omit<Song, "id">;
+        return schema.create("song", attrs as any);
       });
 
-      // 2. READ
-      // Get all songs (with filters)
-      this.get("/songs", (schema, request) => {
+      this.get("/songs", (schema: AppSchema, request) => {
         const { artist, album, genre, year, q } = request.queryParams;
-        let songs = schema.all('song');
+        let songs = schema.all("song").models;
 
         if (q) {
-          const query =
-            typeof q === "string"
-              ? q.toLowerCase()
-              : Array.isArray(q)
-              ? q.join(" ").toLowerCase()
-              : "";
-          songs = songs.filter(
-            (song) =>
-              song.title.toLowerCase().includes(query) ||
-              song.artist.toLowerCase().includes(query) ||
-              song.album.toLowerCase().includes(query)
-          );
+          const query = q.toString().toLowerCase();
+          songs = songs.filter((song) => {
+            const attrs = song.attrs as Song;
+            return (
+              attrs.title.toLowerCase().includes(query) ||
+              attrs.artist.toLowerCase().includes(query) ||
+              attrs.album.toLowerCase().includes(query)
+            );
+          });
         }
 
-        if (artist) songs = songs.filter((song) => song.artist === artist);
-        if (album) songs = songs.filter((song) => song.album === album);
-        if (genre) songs = songs.filter((song) => song.genre === genre);
-        if (year) songs = songs.filter((song) => song.year == year);
+        if (artist)
+          songs = songs.filter(
+            (song) => (song.attrs as Song).artist === artist
+          );
+        if (album)
+          songs = songs.filter((song) => (song.attrs as Song).album === album);
+        if (genre)
+          songs = songs.filter((song) => (song.attrs as Song).genre === genre);
+        if (year)
+          songs = songs.filter(
+            (song) => (song.attrs as Song).year === Number(year)
+          );
 
         return songs;
       });
 
-      // Get single song
-      this.get("/songs/:id", (schema, request) => {
-        return schema.find('song',request.params.id);
+      this.get("/songs/:id", (schema: AppSchema, request) => {
+        return schema.find("song", request.params.id);
       });
 
-      // 3. UPDATE - Edit song
-      this.patch("/songs/:id", (schema, request) => {
-  const attrs = JSON.parse(request.requestBody);
-  const song = schema.songs.find(request.params.id); // Fixed: schema.songs.find()
-  
-  if (!song) {
-    return new Response(
-      404,
-      { "Content-Type": "application/json" },
-      { error: "Song not found" }
-    );
-  }
-  
-  return song.update(attrs);
-});
+      this.put("/songs/:id", (schema: AppSchema, request) => {
+        const id = request.params.id;
+        const attrs = JSON.parse(request.requestBody) as Partial<Song>;
+        const song = schema.find("song", id);
 
-      // 4. DELETE - Remove song
-      this.delete("/songs/:id", (schema, request) => {
-        return schema.find('song', request.params.id).destroy();
+        if (!song) {
+          return new Response(
+            404,
+            { "Content-Type": "application/json" },
+            { error: "Song not found" }
+          );
+        }
+
+        song.update(attrs);
+        return new Response(
+          200,
+          { "Content-Type": "application/json" },
+          song.attrs
+        );
+      });
+
+      this.delete("/songs/:id", (schema: AppSchema, request) => {
+        const song = schema.find("song", request.params.id);
+        if (!song) {
+          return new Response(
+            404,
+            { "Content-Type": "application/json" },
+            { error: "Song not found" }
+          );
+        }
+        song.destroy();
+        return new Response(204, { "Content-Type": "application/json" }, {});
       });
     },
   });
