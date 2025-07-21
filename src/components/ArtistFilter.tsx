@@ -5,7 +5,7 @@ import { setSelectedArtist } from "../redux/songs/songsSlice";
 import { useThemeToggle } from "../theme/CustomThemeProvider";
 import { ThemedProps } from "./ThemeToggle";
 
-const artistData: Record<string, { profile: string}> = {
+const artistData: Record<string, { profile: string }> = {
   "Ed Sheeran": {
     profile: "https://i.ibb.co/zVRfBBqN/ed-pp.jpg",
   },
@@ -49,6 +49,14 @@ const Sidebar = styled.aside<ThemedProps>`
   border-right: 1px solid ${({ theme }) => theme.colors.icon};
   height: 100vh;
   overflow-y: auto;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
 `;
 
 const SectionTitle = styled.h3<ThemedProps>`
@@ -90,8 +98,8 @@ const ProfileImage = styled.img`
 `;
 
 const Name = styled.span`
-   margin: 0
-`
+  margin: 0;
+`;
 
 const ArtistFilter: React.FC<Props> = ({ artists, selectedArtist = null }) => {
   const dispatch = useAppDispatch();
@@ -109,10 +117,12 @@ const ArtistFilter: React.FC<Props> = ({ artists, selectedArtist = null }) => {
         onClick={() => handleArtistClick(null)}
         active={selectedArtist === null}
       >
-        {" "}&nbsp;All Songs
+        {" "}
+        &nbsp;All Songs
       </ArtistButton>
       {artists.map((name) => {
-        const profileImages = artistData[name]?.profile || "https://i.ibb.co/1Ydnvp4B/taylor.jpg";
+        const profileImages =
+          artistData[name]?.profile || "https://i.ibb.co/1Ydnvp4B/taylor.jpg";
         return (
           <ArtistButton
             key={name}

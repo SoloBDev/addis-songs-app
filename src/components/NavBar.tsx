@@ -17,12 +17,31 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 800px) {
+    justify-content: space-between;
+    width: 96%;
+    margin-top: .5em;
+    margin-bottom: 1.2em;
+  }
 `;
 
 const Title = styled.h2`
+  display: block;
   font-size: 1.8em;
   font-weight: bold;
   white-space: nowrap;
+
+  @media (max-width: 420px) {
+    font-size: 1em;
+    white-space: wrap;
+    width: 60px;
+    display: block;
+  }
+
+  @media screen and (min-width: 420px) and (max-width: 800px) {
+    display: none !important;
+  }
 `;
 
 const AddButton = styled.button`
@@ -37,6 +56,10 @@ const AddButton = styled.button`
   &:hover {
     background-color: #5b5c5fff;
   }
+
+  @media (max-width: 400px) {
+    font-size: 0.6em;
+  }
 `;
 
 const InputWrapper = styled.div<{ theme: ThemeType }>`
@@ -46,6 +69,10 @@ const InputWrapper = styled.div<{ theme: ThemeType }>`
   display: flex;
   align-items: center;
   place-content: center;
+
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+  }
 `;
 
 const IconWrapper = styled.span<{ theme: ThemeType }>`
@@ -55,6 +82,11 @@ const IconWrapper = styled.span<{ theme: ThemeType }>`
   transform: translateY(-50%);
   color: ${({ theme }) => theme.colors.icon};
   pointer-events: none;
+
+  @media (max-width: 400px) {
+    left: 1em;
+    font-size: 0.8em;
+  }
 `;
 
 const StyledInput = styled.input<{ theme: ThemeType }>`
@@ -73,6 +105,11 @@ const StyledInput = styled.input<{ theme: ThemeType }>`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.placeholder};
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8em;
+    padding: 0.7em 1em 0.7em 4em;
   }
 `;
 
@@ -94,7 +131,7 @@ export const NavBar: React.FC<NavBarProps> = ({
         </IconWrapper>
         <StyledInput
           theme={currentTheme}
-          type="text"
+          type='text'
           value={query}
           onChange={onSearchChange}
           placeholder={searchPlaceholder}

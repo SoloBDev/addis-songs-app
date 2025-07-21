@@ -5,6 +5,13 @@ const BannerContainer = styled.div`
   position: relative;
   width: 100%;
   height: 220px;
+
+  @media (max-width: 600px) {
+    height: 180px;
+}
+    @media screen and (min-width:600px && max-width:800px) {
+    height: 260px;
+    }
 `;
 
 const BannerImage = styled.img`
@@ -12,6 +19,10 @@ const BannerImage = styled.img`
   height: 100%;
   object-fit: cover;
   filter: brightness(0.7);
+
+  @media (max-width: 600px) {
+    width: 99.9%;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -25,6 +36,15 @@ const ContentWrapper = styled.div`
   backdrop-filter: blur(4px);
   padding: 1rem 2rem;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem 1rem;
+  }
+
+  @media screen and (min-width: 600px && max-width: 1200px) {
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    }
 `;
 
 const ThemeTogglePosition = styled.div`
@@ -43,6 +63,17 @@ const Title = styled.h1`
   font-size: 2.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   padding: 0.5rem 1rem;
+  text-wrap: nowrap;
+
+  @media (max-width: 400px) {
+    font-size: 1.5rem;
+    text-wrap: nowrap;
+  }
+
+  @media screen and (min-width: 400px && max-width: 800px) {
+    font-size: 2rem;
+    width: 100%;
+  }
 `;
 
 const Description = styled.p`
@@ -50,6 +81,15 @@ const Description = styled.p`
   font-size: 1.2rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   padding: 0.5rem 1rem;
+
+  @media (max-width: 400px) {
+    font-size: 0.6em;
+    width: 100%;
+  }
+  @media screen and (min-width: 400px && max-width: 800px) {
+    font-size: 0.8rem;
+    width: 100%;
+  }
 `;
 
 interface SongBannerProps {
