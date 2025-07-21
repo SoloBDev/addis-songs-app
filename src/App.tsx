@@ -6,7 +6,7 @@ import SongList from './components/SongList';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { songs, loading, error } = useSelector((state: RootState) => state.songs);
+  // const { songs, loading, error } = useSelector((state: RootState) => state.songs);
 
   useEffect(() => {
     dispatch(fetchSongsStart());

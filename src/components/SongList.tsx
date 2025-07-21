@@ -10,6 +10,7 @@ import {
   Song,
 } from "../redux/songs/songsSlice";
 import { RootState } from "../redux/store";
+import ThemeToggle from "./ThemeToggle";
 const SongItem = lazy(() => import("./SongItem"));
 const SongForm = lazy(() => import("./SongForm"));
 
@@ -153,6 +154,7 @@ const SongList: React.FC = () => {
         >
           Add New Song
         </AddButton>
+        <ThemeToggle />
       </Header>
 
       {showForm && (

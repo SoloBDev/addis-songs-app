@@ -40,7 +40,7 @@ export function makeServer() {
         "Justin Bieber": "https://i.ibb.co/v6N69bzp/justinorg.webp",
       };
 
-      // 40 REALISTIC SONGS (NO PLACEHOLDERS)
+      // 48 REALISTIC SONGS (NO PLACEHOLDERS)
       const songs: Song[] = [
         // Ed Sheeran (3 songs)
         {
@@ -98,7 +98,7 @@ export function makeServer() {
           artist: "Ed Sheeran",
           album: "÷ (Divide)",
           year: 2017,
-          genre: "Pop",
+          genre: "Rock",
           artistImage: artistImages["Ed Sheeran"],
         },
         // Adele (2 songs)
@@ -178,7 +178,7 @@ export function makeServer() {
           artist: "Bruno Mars",
           album: "Uptown Special",
           year: 2014,
-          genre: "Funk",
+          genre: "Rock",
           artistImage: artistImages["Bruno Mars"],
         },
         {
@@ -196,7 +196,7 @@ export function makeServer() {
           artist: "Bruno Mars",
           album: "24K Magic",
           year: 2016,
-          genre: "Funk",
+          genre: "Rock",
           artistImage: artistImages["Bruno Mars"],
         },
 
@@ -274,7 +274,7 @@ export function makeServer() {
           artist: "Drake",
           album: "Views",
           year: 2016,
-          genre: "Hip-Hop",
+          genre: "Electronic",
           artistImage: artistImages["Drake"],
         },
 
@@ -323,7 +323,7 @@ export function makeServer() {
           artist: "BTS",
           album: "Map of the Soul: Persona",
           year: 2019,
-          genre: "Pop",
+          genre: "Country",
           artistImage: artistImages["BTS"],
         },
 
@@ -343,7 +343,7 @@ export function makeServer() {
           artist: "Post Malone",
           album: "Spider-Man: Into the Spider-Verse",
           year: 2018,
-          genre: "Pop",
+          genre: "Electronic",
           artistImage: artistImages["Post Malone"],
         },
         {
@@ -381,7 +381,7 @@ export function makeServer() {
           artist: "Ariana Grande",
           album: "Dangerous Woman",
           year: 2016,
-          genre: "Pop",
+          genre: "Country",
           artistImage: artistImages["Ariana Grande"],
         },
 
@@ -392,7 +392,7 @@ export function makeServer() {
           artist: "Justin Bieber",
           album: "Purpose",
           year: 2015,
-          genre: "Pop",
+          genre: "R&B",
           artistImage: artistImages["Justin Bieber"],
         },
         {
@@ -475,7 +475,7 @@ export function makeServer() {
           artist: "Coldplay",
           album: "Parachutes",
           year: 2000,
-          genre: "Alternative Rock",
+          genre: "Rock",
           artistImage: artistImages["Coldplay"],
         },
         {
@@ -484,7 +484,7 @@ export function makeServer() {
           artist: "Coldplay",
           album: "Viva la Vida or Death and All His Friends",
           year: 2008,
-          genre: "Alternative Rock",
+          genre: "Rock",
           artistImage: artistImages["Coldplay"],
         },
         {
