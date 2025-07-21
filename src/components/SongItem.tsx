@@ -67,7 +67,7 @@ const ActionButton = styled.button<{ theme: ThemeType }>`
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.icon};
   }
 
   &:disabled {
