@@ -1,7 +1,7 @@
 # Addis Software Test Project
 
 <div align="center">
-  <img src="/home.png" alt="Skillbridge Banner" width="100%" />
+  <img src="readme/home.png" alt="Hero page Screenshot" width="100%" />
 
  <p align="center">
 This test project evaluates your frontend development skills. It is a full-stack application where the frontend interacts with a REST API to manage a list of songs.
