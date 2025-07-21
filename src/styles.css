@@ -1,0 +1,59 @@
+/* styles.css */
+:root {
+  /* Layout */
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  /* Theme Variables - Light (default) */
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --primary-color: #307cd3;
+  --secondary-color: #f5f5f5;
+  --accent-color: #4a90e2;
+  --icon-color: #3b3939;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  transition: 
+    background-color var(--transition-speed) ease, 
+    color var(--transition-speed) ease;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --primary-color: #70dcc5;
+  --secondary-color: #2d2d2d;
+  --accent-color: #70dcc5;
+  --icon-color: #b4b4b4;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  /* Uses default light theme variables */
+}
+
+/* Smooth transitions for all theme-affected properties */
+*,
+*::before,
+*::after {
+  transition: 
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    fill var(--transition-speed) ease;
+}

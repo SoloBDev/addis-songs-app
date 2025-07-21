@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Song } from '../redux/songs/songsSlice';
+import { ThemeType } from '../../theme';
+import { useThemeToggle } from '../theme/CustomThemeProvider';
 
 interface Props {
   song: Song;
@@ -9,14 +11,17 @@ interface Props {
   isProcessing?: boolean;
 }
 
-const SongCard = styled.div<{ isProcessing?: boolean }>`
+const SongCard = styled.div<{ isProcessing?: boolean; theme: ThemeType }>`
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
-  background-color: #fdfdfd;
-  transition: box-shadow 0.2s;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  transition: 
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
 
   &:hover {
@@ -34,16 +39,17 @@ const ArtistImage = styled.img`
   margin-bottom: 12px;
 `;
 
-const SongTitle = styled.h3`
+const SongTitle = styled.h3<{ theme: ThemeType }>`
   margin: 0 0 6px;
   font-size: 20px;
   font-weight: bold;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
-const SongDetail = styled.p`
+const SongDetail = styled.p<{ theme: ThemeType }>`
   margin: 2px 0;
   font-size: 14px;
-  color: #444;
+  color: ${({ theme }) => theme.colors.icon};
 `;
 
 const ActionButtons = styled.div`
@@ -52,45 +58,62 @@ const ActionButtons = styled.div`
   gap: 10px;
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled.button<{ theme: ThemeType }>`
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
-  background-color: #0077cc;
-  color: #fff;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: white;
   font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #005fa3;
+    background-color: ${({ theme }) => theme.colors.text};
   }
 
   &:disabled {
-    background-color: #ccc;
+    background-color: ${({ theme }) => theme.colors.background};
     cursor: not-allowed;
   }
 `;
 
 const SongItem: React.FC<Props> = ({ song, onEdit, onDelete, isProcessing }) => {
+  const { currentTheme } = useThemeToggle();
+
   return (
-    <SongCard isProcessing={isProcessing}>
+    <SongCard isProcessing={isProcessing} theme={currentTheme}>
       {song.artistImage && (
         <ArtistImage src={song.artistImage} alt={`${song.artist}'s image`} />
       )}
 
-      <SongTitle>
+      <SongTitle theme={currentTheme}>
         {song.title} <span style={{ fontWeight: 'normal' }}>by {song.artist}</span>
       </SongTitle>
 
-      <SongDetail><strong>Genre:</strong> {song.genre}</SongDetail>
-      <SongDetail><strong>Album:</strong> {song.album}</SongDetail>
-      <SongDetail><strong>Year:</strong> {song.year}</SongDetail>
+      <SongDetail theme={currentTheme}>
+        <strong>Genre:</strong> {song.genre}
+      </SongDetail>
+      <SongDetail theme={currentTheme}>
+        <strong>Album:</strong> {song.album}
+      </SongDetail>
+      <SongDetail theme={currentTheme}>
+        <strong>Year:</strong> {song.year}
+      </SongDetail>
 
       <ActionButtons>
-        <ActionButton onClick={() => onEdit(song)} disabled={isProcessing}>
+        <ActionButton 
+          onClick={() => onEdit(song)} 
+          disabled={isProcessing}
+          theme={currentTheme}
+        >
           Edit
         </ActionButton>
-        <ActionButton onClick={() => onDelete(song.id)} disabled={isProcessing}>
+        <ActionButton 
+          onClick={() => onDelete(song.id)} 
+          disabled={isProcessing}
+          theme={currentTheme}
+        >
           Delete
         </ActionButton>
       </ActionButtons>

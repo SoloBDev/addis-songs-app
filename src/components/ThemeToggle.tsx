@@ -3,7 +3,7 @@ import { useThemeToggle } from "../theme/CustomThemeProvider";
 import { Moon, Sun } from "lucide-react";
 import { ThemeType } from "../../theme";
 
-interface ThemedProps {
+export interface ThemedProps {
   theme: ThemeType;
 }
 
