@@ -10,15 +10,14 @@ import {
   Song,
 } from "../redux/songs/songsSlice";
 import { RootState } from "../redux/store";
-import { ThemeType } from "../../theme";
-import { NavBar } from "./NavBar";
+import { useThemeToggle } from "../theme/CustomThemeProvider";
+
 const SongItem = lazy(() => import("./SongItem"));
 const SongForm = lazy(() => import("./SongForm"));
 
 const Container = styled.div`
   padding: 2em;
 `;
-
 
 const StatusText = styled.p`
   color: #555;
@@ -31,7 +30,6 @@ const Grid = styled.div`
   gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `;
-
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -63,7 +61,13 @@ const ModalButton = styled.button<{ variant?: "cancel" | "confirm" }>`
   }
 `;
 
-const SongList: React.FC = () => {
+interface SongListProps {
+  query: string;
+  showForm: boolean;
+  onFormClose: () => void;
+}
+
+const SongList: React.FC<SongListProps> = ({ query, showForm, onFormClose }) => {
   const dispatch = useDispatch();
   const selectedArtist = useSelector(
     (state: RootState) => state.songs.selectedArtist
@@ -75,8 +79,6 @@ const SongList: React.FC = () => {
 
   const [editSong, setEditSong] = useState<Song | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [query, setQuery] = useState("");
 
   useEffect(() => {
     dispatch(fetchSongsStart());
@@ -89,16 +91,12 @@ const SongList: React.FC = () => {
       dispatch(createSongStart(song));
     }
     setEditSong(null);
-    setShowForm(false);
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    onFormClose();
   };
 
   const handleEdit = (song: Song) => {
     setEditSong(song);
-    setShowForm(true);
+    onFormClose();
   };
 
   const handleDeleteConfirm = () => {
@@ -119,27 +117,19 @@ const SongList: React.FC = () => {
       );
     });
 
+  const currentTheme = useThemeToggle();
+
   return (
     <Container>
-      <NavBar
-        title="Songs Library"
-        query={query}
-        onSearchChange={handleSearchChange}
-        onAddClick={() => {
-          setEditSong(null);
-          setShowForm(true);
-        }}
-        searchPlaceholder="Search songs by title, artist or genre..."
-      />
-
-      {/* Rest of the component remains the same */}
       {showForm && (
-        <Suspense fallback={<StatusText>{loading && "Loading songs..."}</StatusText>}>
+        <Suspense
+          fallback={<StatusText>{loading && "Loading songs..."}</StatusText>}
+        >
           <SongForm
             initialData={editSong || undefined}
             onSubmit={handleCreateOrUpdate}
             onCancel={() => {
-              setShowForm(false);
+              onFormClose();
               setEditSong(null);
             }}
             isLoading={false}
@@ -147,13 +137,18 @@ const SongList: React.FC = () => {
         </Suspense>
       )}
 
-      {error && <StatusText style={{ color: "red" }}>Error: {error}</StatusText>}
+      {error && (
+        <StatusText style={{ color: "red" }}>Error: {error}</StatusText>
+      )}
       <StatusText>Total Songs: {filteredSongs.length}</StatusText>
 
       {filteredSongs.length > 0 ? (
         <Grid>
           {filteredSongs.map((song) => (
-            <Suspense fallback={<StatusText>{loading && "Loading..."}</StatusText>} key={song.id}>
+            <Suspense
+              fallback={<StatusText>{loading && "Loading..."}</StatusText>}
+              key={song.id}
+            >
               <SongItem
                 key={song.id}
                 song={song}

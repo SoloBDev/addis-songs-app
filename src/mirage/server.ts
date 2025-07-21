@@ -23,20 +23,50 @@ export function makeServer() {
 
     seeds(server) {
       // Artist images (placeholder URLs)
-      const artistImages = {
-        "Ed Sheeran": "https://i.ibb.co/LDYvJkzG/sheeran.webp",
-        "The Weeknd": "https://i.ibb.co/fVRwJfsL/the-weekend.webp",
-        Adele: "https://i.ibb.co/HfNQqnws/adele.webp",
-        Coldplay: "https://i.ibb.co/4gtpMfRw/coldplay.webp",
-        "Dua Lipa": "https://i.ibb.co/VkNgv8D/dua.webp",
-        "Bruno Mars": "https://i.ibb.co/Z1Xpfdtf/bruno.webp",
-        "Taylor Swift": "https://i.ibb.co/20ThZjvw/taylor.webp",
-        Drake: "https://i.ibb.co/PssCqZSJ/drakeorg.webp",
-        "Post Malone": "https://i.ibb.co/0VvJhwrc/postmalone.webp",
-        "Justin Bieber": "https://i.ibb.co/v6N69bzp/justinorg.webp",
+
+      const artistData = {
+        "Ed Sheeran": {
+          image: "https://i.ibb.co/LDYvJkzG/sheeran.webp",
+          profile: "https://i.ibb.co/zVRfBBqN/ed-pp.jpg",
+        },
+        "The Weeknd": {
+          image: "https://i.ibb.co/fVRwJfsL/the-weekend.webp",
+          profile: "https://i.ibb.co/hRD2LZS3/abel-pp.jpg",
+        },
+        "Adele": {
+          image: "https://i.ibb.co/HfNQqnws/adele.webp",
+          profile: "https://i.ibb.co/WvL5hVqT/adele-pp.jpg",
+        },
+        "Coldplay": {
+          image: "https://i.ibb.co/4gtpMfRw/coldplay.webp",
+          profile: "https://i.ibb.co/WWFNQfgp/cold-pp.jpg",
+        },
+        "Dua Lipa": {
+          image: "https://i.ibb.co/VkNgv8D/dua.webp",
+          profile: "https://i.ibb.co/3m4DFtnZ/dua-pp.jpg",
+        },
+        "Bruno Mars": {
+          image: "https://i.ibb.co/Z1Xpfdtf/bruno.webp",
+          profile: "https://i.ibb.co/C5HWkWQ1/bruno-pp.jpg",
+        },
+        "Taylor Swift": {
+          image: "https://i.ibb.co/1Ydnvp4B/taylor.jpg",
+          profile: "https://i.ibb.co/DPnN5fht/taylor-pp.jpg",
+        },
+        Drake: {
+          image: "https://i.ibb.co/PssCqZSJ/drakeorg.webp",
+          profile: "https://i.ibb.co/SXFcXmkV/barca.jpg",
+        },
+        "Post Malone": {
+          image: "https://i.ibb.co/0VvJhwrc/postmalone.webp",
+          profile: "https://i.ibb.co/nTL5xTd/postM.jpg",
+        },
+        "Justin Bieber": {
+          image: "https://i.ibb.co/v6N69bzp/justinorg.webp",
+          profile: "https://i.ibb.co/274NmbZ9/justin-pp.jpg",
+        },
       };
 
-      // 60 REALISTIC SONGS (NO PLACEHOLDERS)
       const songs: Song[] = [
         // Ed Sheeran (6 songs)
         {
@@ -46,7 +76,8 @@ export function makeServer() {
           album: "÷ (Divide)",
           year: 2017,
           genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "5.6B",
         },
         {
           id: "2",
@@ -55,7 +86,8 @@ export function makeServer() {
           album: "x (Multiply)",
           year: 2014,
           genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "2.8B",
         },
         {
           id: "3",
@@ -64,7 +96,8 @@ export function makeServer() {
           album: "÷ (Divide)",
           year: 2017,
           genre: "Rock",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "2.5B",
         },
         {
           id: "4",
@@ -73,7 +106,8 @@ export function makeServer() {
           album: "x (Multiply)",
           year: 2014,
           genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "1.2B",
         },
         {
           id: "5",
@@ -82,7 +116,8 @@ export function makeServer() {
           album: "÷ (Divide)",
           year: 2017,
           genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "1.8B",
         },
         {
           id: "6",
@@ -91,7 +126,8 @@ export function makeServer() {
           album: "=",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Ed Sheeran"],
+          artistImage: artistData["Ed Sheeran"].image,
+          views: "1.1B",
         },
 
         // The Weeknd (7 songs)
@@ -102,7 +138,8 @@ export function makeServer() {
           album: "Starboy",
           year: 2016,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "2.3B",
         },
         {
           id: "8",
@@ -111,7 +148,8 @@ export function makeServer() {
           album: "After Hours",
           year: 2020,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "3.5B",
         },
         {
           id: "9",
@@ -120,7 +158,8 @@ export function makeServer() {
           album: "After Hours",
           year: 2020,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "2.1B",
         },
         {
           id: "10",
@@ -129,7 +168,8 @@ export function makeServer() {
           album: "After Hours",
           year: 2020,
           genre: "Rock",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "750M",
         },
         {
           id: "11",
@@ -138,7 +178,8 @@ export function makeServer() {
           album: "Starboy",
           year: 2016,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "1.4B",
         },
         {
           id: "12",
@@ -147,7 +188,8 @@ export function makeServer() {
           album: "After Hours (Deluxe)",
           year: 2021,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "900M",
         },
         {
           id: "13",
@@ -156,7 +198,8 @@ export function makeServer() {
           album: "Beauty Behind the Madness",
           year: 2015,
           genre: "R&B",
-          artistImage: artistImages["The Weeknd"],
+          artistImage: artistData["The Weeknd"].image,
+          views: "1.9B",
         },
 
         // Adele (4 songs)
@@ -167,7 +210,8 @@ export function makeServer() {
           album: "25",
           year: 2015,
           genre: "Pop",
-          artistImage: artistImages["Adele"],
+          artistImage: artistData["Adele"].image,
+          views: "3.2B",
         },
         {
           id: "15",
@@ -176,7 +220,8 @@ export function makeServer() {
           album: "21",
           year: 2010,
           genre: "Pop",
-          artistImage: artistImages["Adele"],
+          artistImage: artistData["Adele"].image,
+          views: "2.1B",
         },
         {
           id: "16",
@@ -185,7 +230,8 @@ export function makeServer() {
           album: "21",
           year: 2011,
           genre: "Pop",
-          artistImage: artistImages["Adele"],
+          artistImage: artistData["Adele"].image,
+          views: "1.8B",
         },
         {
           id: "17",
@@ -194,7 +240,8 @@ export function makeServer() {
           album: "30",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Adele"],
+          artistImage: artistData["Adele"].image,
+          views: "1.5B",
         },
 
         // Coldplay (5 songs)
@@ -205,7 +252,8 @@ export function makeServer() {
           album: "Parachutes",
           year: 2000,
           genre: "Rock",
-          artistImage: artistImages["Coldplay"],
+          artistImage: artistData["Coldplay"].image,
+          views: "1.2B",
         },
         {
           id: "19",
@@ -214,7 +262,8 @@ export function makeServer() {
           album: "Viva la Vida or Death and All His Friends",
           year: 2008,
           genre: "Rock",
-          artistImage: artistImages["Coldplay"],
+          artistImage: artistData["Coldplay"].image,
+          views: "1.6B",
         },
         {
           id: "20",
@@ -223,7 +272,8 @@ export function makeServer() {
           album: "A Rush of Blood to the Head",
           year: 2002,
           genre: "Rock",
-          artistImage: artistImages["Coldplay"],
+          artistImage: artistData["Coldplay"].image,
+          views: "850M",
         },
         {
           id: "21",
@@ -232,7 +282,8 @@ export function makeServer() {
           album: "Mylo Xyloto",
           year: 2011,
           genre: "Rock",
-          artistImage: artistImages["Coldplay"],
+          artistImage: artistData["Coldplay"].image,
+          views: "1.3B",
         },
         {
           id: "22",
@@ -241,7 +292,8 @@ export function makeServer() {
           album: "X&Y",
           year: 2005,
           genre: "Rock",
-          artistImage: artistImages["Coldplay"],
+          artistImage: artistData["Coldplay"].image,
+          views: "1.1B",
         },
 
         // Dua Lipa (5 songs)
@@ -252,7 +304,8 @@ export function makeServer() {
           album: "Future Nostalgia",
           year: 2019,
           genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          artistImage: artistData["Dua Lipa"].image,
+          views: "2.4B",
         },
         {
           id: "24",
@@ -261,7 +314,8 @@ export function makeServer() {
           album: "Future Nostalgia",
           year: 2020,
           genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          artistImage: artistData["Dua Lipa"].image,
+          views: "1.8B",
         },
         {
           id: "25",
@@ -270,7 +324,8 @@ export function makeServer() {
           album: "Dua Lipa",
           year: 2017,
           genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          artistImage: artistData["Dua Lipa"].image,
+          views: "2.1B",
         },
         {
           id: "26",
@@ -279,7 +334,8 @@ export function makeServer() {
           album: "Future Nostalgia",
           year: 2020,
           genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          artistImage: artistData["Dua Lipa"].image,
+          views: "750M",
         },
         {
           id: "27",
@@ -288,7 +344,8 @@ export function makeServer() {
           album: "Future Nostalgia",
           year: 2020,
           genre: "Pop",
-          artistImage: artistImages["Dua Lipa"],
+          artistImage: artistData["Dua Lipa"].image,
+          views: "1.2B",
         },
 
         // Bruno Mars (6 songs)
@@ -299,7 +356,8 @@ export function makeServer() {
           album: "Uptown Special",
           year: 2014,
           genre: "Rock",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "4.5B",
         },
         {
           id: "29",
@@ -308,7 +366,8 @@ export function makeServer() {
           album: "Doo-Wops & Hooligans",
           year: 2010,
           genre: "Pop",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "2.2B",
         },
         {
           id: "30",
@@ -317,7 +376,8 @@ export function makeServer() {
           album: "24K Magic",
           year: 2016,
           genre: "Rock",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "1.9B",
         },
         {
           id: "31",
@@ -326,7 +386,8 @@ export function makeServer() {
           album: "Uptown Special",
           year: 2014,
           genre: "Funk",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "1.1B",
         },
         {
           id: "32",
@@ -335,7 +396,8 @@ export function makeServer() {
           album: "24K Magic",
           year: 2016,
           genre: "R&B",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "850M",
         },
         {
           id: "33",
@@ -344,7 +406,8 @@ export function makeServer() {
           album: "24K Magic",
           year: 2016,
           genre: "R&B",
-          artistImage: artistImages["Bruno Mars"],
+          artistImage: artistData["Bruno Mars"].image,
+          views: "1.7B",
         },
 
         // Taylor Swift (5 songs)
@@ -355,7 +418,8 @@ export function makeServer() {
           album: "1989",
           year: 2014,
           genre: "Pop",
-          artistImage: artistImages["Taylor Swift"],
+          artistImage: artistData["Taylor Swift"].image,
+          views: "3.1B",
         },
         {
           id: "35",
@@ -364,7 +428,8 @@ export function makeServer() {
           album: "Fearless",
           year: 2008,
           genre: "Country",
-          artistImage: artistImages["Taylor Swift"],
+          artistImage: artistData["Taylor Swift"].image,
+          views: "1.5B",
         },
         {
           id: "36",
@@ -373,7 +438,8 @@ export function makeServer() {
           album: "1989",
           year: 2014,
           genre: "Pop",
-          artistImage: artistImages["Taylor Swift"],
+          artistImage: artistData["Taylor Swift"].image,
+          views: "2.8B",
         },
         {
           id: "37",
@@ -382,7 +448,8 @@ export function makeServer() {
           album: "Folklore",
           year: 2020,
           genre: "Indie",
-          artistImage: artistImages["Taylor Swift"],
+          artistImage: artistData["Taylor Swift"].image,
+          views: "450M",
         },
         {
           id: "38",
@@ -391,7 +458,8 @@ export function makeServer() {
           album: "Midnights",
           year: 2022,
           genre: "Pop",
-          artistImage: artistImages["Taylor Swift"],
+          artistImage: artistData["Taylor Swift"].image,
+          views: "600M",
         },
 
         // Drake (6 songs)
@@ -402,7 +470,8 @@ export function makeServer() {
           album: "Scorpion",
           year: 2018,
           genre: "Hip-Hop",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "2.3B",
         },
         {
           id: "40",
@@ -411,7 +480,8 @@ export function makeServer() {
           album: "Views",
           year: 2016,
           genre: "Hip-Hop",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "1.9B",
         },
         {
           id: "41",
@@ -420,7 +490,8 @@ export function makeServer() {
           album: "Views",
           year: 2016,
           genre: "Electronic",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "2.7B",
         },
         {
           id: "42",
@@ -429,7 +500,8 @@ export function makeServer() {
           album: "Scorpion",
           year: 2018,
           genre: "Hip-Hop",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "1.5B",
         },
         {
           id: "43",
@@ -438,7 +510,8 @@ export function makeServer() {
           album: "Nothing Was the Same",
           year: 2013,
           genre: "Hip-Hop",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "1.2B",
         },
         {
           id: "44",
@@ -447,7 +520,8 @@ export function makeServer() {
           album: "Nothing Was the Same",
           year: 2013,
           genre: "R&B",
-          artistImage: artistImages["Drake"],
+          artistImage: artistData["Drake"].image,
+          views: "1.1B",
         },
 
         // Post Malone (6 songs)
@@ -458,7 +532,8 @@ export function makeServer() {
           album: "Hollywood's Bleeding",
           year: 2019,
           genre: "Pop",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "2.1B",
         },
         {
           id: "46",
@@ -467,7 +542,8 @@ export function makeServer() {
           album: "Spider-Man: Into the Spider-Verse",
           year: 2018,
           genre: "Electronic",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "2.8B",
         },
         {
           id: "47",
@@ -476,7 +552,8 @@ export function makeServer() {
           album: "Beerbongs & Bentleys",
           year: 2017,
           genre: "Hip-Hop",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "1.9B",
         },
         {
           id: "48",
@@ -485,7 +562,8 @@ export function makeServer() {
           album: "Hollywood's Bleeding",
           year: 2019,
           genre: "Pop",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "1.3B",
         },
         {
           id: "49",
@@ -494,7 +572,8 @@ export function makeServer() {
           album: "Beerbongs & Bentleys",
           year: 2018,
           genre: "Pop",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "1.7B",
         },
         {
           id: "50",
@@ -503,7 +582,8 @@ export function makeServer() {
           album: "Stoney",
           year: 2016,
           genre: "Hip-Hop",
-          artistImage: artistImages["Post Malone"],
+          artistImage: artistData["Post Malone"].image,
+          views: "1.4B",
         },
 
         // Justin Bieber (6 songs)
@@ -514,7 +594,7 @@ export function makeServer() {
           album: "Purpose",
           year: 2015,
           genre: "R&B",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
         },
         {
           id: "52",
@@ -523,7 +603,7 @@ export function makeServer() {
           album: "Purpose",
           year: 2015,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
         },
         {
           id: "53",
@@ -532,7 +612,8 @@ export function makeServer() {
           album: "Justice",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.3B",
         },
         {
           id: "54",
@@ -541,7 +622,8 @@ export function makeServer() {
           album: "Justice",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.6B",
         },
         {
           id: "55",
@@ -550,7 +632,8 @@ export function makeServer() {
           album: "Purpose",
           year: 2015,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.8B",
         },
         {
           id: "56",
@@ -559,7 +642,8 @@ export function makeServer() {
           album: "Changes",
           year: 2020,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "900M",
         },
         {
           id: "57",
@@ -568,7 +652,8 @@ export function makeServer() {
           album: "Justice",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.2B",
         },
         {
           id: "58",
@@ -577,7 +662,8 @@ export function makeServer() {
           album: "Purpose",
           year: 2015,
           genre: "R&B",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "800M",
         },
         {
           id: "59",
@@ -586,7 +672,8 @@ export function makeServer() {
           album: "Justice",
           year: 2020,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.4B",
         },
         {
           id: "60",
@@ -595,7 +682,8 @@ export function makeServer() {
           album: "Justice",
           year: 2021,
           genre: "Pop",
-          artistImage: artistImages["Justin Bieber"],
+          artistImage: artistData["Justin Bieber"].image,
+          views: "1.1B",
         },
       ];
 

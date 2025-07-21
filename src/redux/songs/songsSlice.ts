@@ -8,6 +8,7 @@ export interface Song {
   artistImage?: string;
   year: number;
   genre: string;
+  views?: string; // Optional field for views
 }
 
 interface SongsState {
