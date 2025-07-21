@@ -14,7 +14,7 @@ interface Props {
 const SongCard = styled.div<{ isProcessing?: boolean; theme: ThemeType }>`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 10px 8px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.background};
@@ -31,7 +31,7 @@ const SongCard = styled.div<{ isProcessing?: boolean; theme: ThemeType }>`
 
 const ArtistImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 12px;

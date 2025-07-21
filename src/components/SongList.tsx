@@ -16,7 +16,8 @@ const SongItem = lazy(() => import("./SongItem"));
 const SongForm = lazy(() => import("./SongForm"));
 
 const Container = styled.div`
-  padding: 2em;
+  padding: 2em 1em;
+  margin-top: -3em;
 `;
 
 const StatusText = styled.p`
@@ -96,6 +97,7 @@ const SongList: React.FC<SongListProps> = ({ query, showForm, onFormClose }) => 
 
   const handleEdit = (song: Song) => {
     setEditSong(song);
+    
     onFormClose();
   };
 
@@ -121,7 +123,7 @@ const SongList: React.FC<SongListProps> = ({ query, showForm, onFormClose }) => 
 
   return (
     <Container>
-      {showForm && (
+      {(showForm || editSong) && (
         <Suspense
           fallback={<StatusText>{loading && "Loading songs..."}</StatusText>}
         >

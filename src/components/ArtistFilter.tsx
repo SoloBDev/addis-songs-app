@@ -1,17 +1,49 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setSelectedArtist } from "../redux/songs/songsSlice";
 import { useThemeToggle } from "../theme/CustomThemeProvider";
-import { ThemedProps } from './ThemeToggle';
+import { ThemedProps } from "./ThemeToggle";
 
+const artistData: Record<string, { profile: string}> = {
+  "Ed Sheeran": {
+    profile: "https://i.ibb.co/zVRfBBqN/ed-pp.jpg",
+  },
+  "The Weeknd": {
+    profile: "https://i.ibb.co/hRD2LZS3/abel-pp.jpg",
+  },
+  Adele: {
+    profile: "https://i.ibb.co/WvL5hVqT/adele-pp.jpg",
+  },
+  Coldplay: {
+    profile: "https://i.ibb.co/WWFNQfgp/cold-pp.jpg",
+  },
+  "Dua Lipa": {
+    profile: "https://i.ibb.co/3m4DFtnZ/dua-pp.jpg",
+  },
+  "Bruno Mars": {
+    profile: "https://i.ibb.co/C5HWkWQ1/bruno-pp.jpg",
+  },
+  "Taylor Swift": {
+    profile: "https://i.ibb.co/DPnN5fht/taylor-pp.jpg",
+  },
+  Drake: {
+    profile: "https://i.ibb.co/SXFcXmkV/barca.jpg",
+  },
+  "Post Malone": {
+    profile: "https://i.ibb.co/nTL5xTd/postM.jpg",
+  },
+  "Justin Bieber": {
+    profile: "https://i.ibb.co/274NmbZ9/justin-pp.jpg",
+  },
+};
 interface Props {
   artists: string[];
   selectedArtist?: string | null;
 }
 
 const Sidebar = styled.aside<ThemedProps>`
-  width: 220px;
+  width: 180px;
   padding: 1rem 0.75rem;
   background-color: ${({ theme }) => theme.colors.background};
   border-right: 1px solid ${({ theme }) => theme.colors.icon};
@@ -26,13 +58,14 @@ const SectionTitle = styled.h3<ThemedProps>`
   margin-bottom: 1rem;
 `;
 
-const ArtistButton = styled.button<{ active?: boolean;} & ThemedProps>`
+const ArtistButton = styled.button<{ active?: boolean } & ThemedProps>`
   background: ${({ active, theme }) =>
     active ? theme.colors.primary : "transparent"};
   color: ${({ active, theme }) =>
     active ? theme.colors.background : theme.colors.text};
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   width: 100%;
   padding: 0.5rem 0.75rem;
   margin-bottom: 0.5rem;
@@ -49,7 +82,18 @@ const ArtistButton = styled.button<{ active?: boolean;} & ThemedProps>`
   }
 `;
 
-const ArtistFilter = ({ artists, selectedArtist }: Props) => {
+const ProfileImage = styled.img`
+  width: 28px;
+  height: 28px;
+  border-radius: 20%;
+  object-fit: cover;
+`;
+
+const Name = styled.span`
+   margin: 0
+`
+
+const ArtistFilter: React.FC<Props> = ({ artists, selectedArtist = null }) => {
   const dispatch = useAppDispatch();
   const currentTheme = useThemeToggle();
 
@@ -60,22 +104,32 @@ const ArtistFilter = ({ artists, selectedArtist }: Props) => {
   return (
     <Sidebar theme={currentTheme.currentTheme}>
       <SectionTitle theme={currentTheme.currentTheme}>Artists</SectionTitle>
-      <ArtistButton theme={currentTheme.currentTheme}
+      <ArtistButton
+        theme={currentTheme.currentTheme}
         onClick={() => handleArtistClick(null)}
         active={selectedArtist === null}
       >
-        All Songs
+        {" "}&nbsp;All Songs
       </ArtistButton>
-      {artists.map((name) => (
-        <ArtistButton
-          theme={currentTheme.currentTheme}
-          key={name}
-          onClick={() => handleArtistClick(name)}
-          active={selectedArtist === name}
-        >
-          {name}
-        </ArtistButton>
-      ))}
+      {artists.map((name) => {
+        const profileImages = artistData[name]?.profile || "https://i.ibb.co/1Ydnvp4B/taylor.jpg";
+        return (
+          <ArtistButton
+            key={name}
+            theme={currentTheme.currentTheme}
+            onClick={() => handleArtistClick(name)}
+            active={selectedArtist === name}
+          >
+            {profileImages && (
+              <ProfileImage
+                src={profileImages}
+                alt={`Profile image of ${name}`}
+              />
+            )}
+            <Name>{name}</Name>
+          </ArtistButton>
+        );
+      })}
     </Sidebar>
   );
 };

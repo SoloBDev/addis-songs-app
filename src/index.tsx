@@ -17,7 +17,7 @@ const root = createRoot(document.getElementById("root")!);
 root.render(
   <Provider store={store}>
     {/* wrap the App component with CustomThemeProvider and add a default theme dark mode */}
-    <CustomThemeProvider>
+    <CustomThemeProvider defaultTheme="dark">
       <App />
     </CustomThemeProvider>
   </Provider>
