@@ -10,6 +10,8 @@ import {
   Song,
 } from "../redux/songs/songsSlice";
 import { RootState } from "../redux/store";
+import { ThemeType } from "../../theme";
+import { NavBar } from "./NavBar";
 const SongItem = lazy(() => import("./SongItem"));
 const SongForm = lazy(() => import("./SongForm"));
 
@@ -17,38 +19,6 @@ const Container = styled.div`
   padding: 2em;
 `;
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5em;
-`;
-
-const Title = styled.h2`
-  font-size: 2em;
-  font-weight: bold;
-`;
-
-const AddButton = styled.button`
-  background-color: #2563eb;
-  color: white;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 0.375em;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #1d4ed8;
-  }
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 0.5em 1em;
-  margin-bottom: 1.5em;
-  border: 1px solid #ccc;
-  border-radius: 0.375em;
-`;
 
 const StatusText = styled.p`
   color: #555;
@@ -61,6 +31,7 @@ const Grid = styled.div`
   gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `;
+
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -94,23 +65,22 @@ const ModalButton = styled.button<{ variant?: "cancel" | "confirm" }>`
 
 const SongList: React.FC = () => {
   const dispatch = useDispatch();
-const selectedArtist = useSelector((state: RootState) => state.songs.selectedArtist);
+  const selectedArtist = useSelector(
+    (state: RootState) => state.songs.selectedArtist
+  );
 
   const { songs, loading, error } = useSelector(
     (state: RootState) => state.songs
   );
-  const [query, setQuery] = useState("");
+
   const [editSong, setEditSong] = useState<Song | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     dispatch(fetchSongsStart());
   }, [dispatch]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
 
   const handleCreateOrUpdate = (song: Omit<Song, "id">, id?: string) => {
     if (id) {
@@ -120,6 +90,10 @@ const selectedArtist = useSelector((state: RootState) => state.songs.selectedArt
     }
     setEditSong(null);
     setShowForm(false);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
 
   const handleEdit = (song: Song) => {
@@ -134,33 +108,31 @@ const selectedArtist = useSelector((state: RootState) => state.songs.selectedArt
     }
   };
 
-const filteredSongs = songs
-  .filter((song) =>
-    selectedArtist ? song.artist === selectedArtist : true
-  )
-  .filter((song) => {
-    const search = query.toLowerCase();
-    return (
-      song.title.toLowerCase().includes(search) ||
-      song.artist.toLowerCase().includes(search) ||
-      song.genre?.toLowerCase().includes(search)
-    );
-  });
+  const filteredSongs = songs
+    .filter((song) => (selectedArtist ? song.artist === selectedArtist : true))
+    .filter((song) => {
+      const search = query.toLowerCase();
+      return (
+        song.title.toLowerCase().includes(search) ||
+        song.artist.toLowerCase().includes(search) ||
+        song.genre?.toLowerCase().includes(search)
+      );
+    });
 
   return (
     <Container>
-      <Header>
-        <Title>Songs Library</Title>
-        <AddButton
-          onClick={() => {
-            setEditSong(null);
-            setShowForm(true);
-          }}
-        >
-          Add New Song
-        </AddButton>
-      </Header>
+      <NavBar
+        title="Songs Library"
+        query={query}
+        onSearchChange={handleSearchChange}
+        onAddClick={() => {
+          setEditSong(null);
+          setShowForm(true);
+        }}
+        searchPlaceholder="Search songs by title, artist or genre..."
+      />
 
+      {/* Rest of the component remains the same */}
       {showForm && (
         <Suspense fallback={<StatusText>{loading && "Loading songs..."}</StatusText>}>
           <SongForm
@@ -175,16 +147,7 @@ const filteredSongs = songs
         </Suspense>
       )}
 
-      <SearchInput
-        type='text'
-        value={query}
-        onChange={handleSearchChange}
-        placeholder='Search songs by title, artist or genre...'
-      />
-
-      {error && (
-        <StatusText style={{ color: "red" }}>Error: {error}</StatusText>
-      )}
+      {error && <StatusText style={{ color: "red" }}>Error: {error}</StatusText>}
       <StatusText>Total Songs: {filteredSongs.length}</StatusText>
 
       {filteredSongs.length > 0 ? (
@@ -211,7 +174,7 @@ const filteredSongs = songs
           <ModalBox onClick={(e) => e.stopPropagation()}>
             <p>Are you sure you want to delete this song?</p>
             <div style={{ textAlign: "right", marginTop: "1em" }}>
-              <ModalButton variant='cancel' onClick={() => setDeleteId(null)}>
+              <ModalButton variant="cancel" onClick={() => setDeleteId(null)}>
                 Cancel
               </ModalButton>
               <ModalButton onClick={handleDeleteConfirm}>Delete</ModalButton>
