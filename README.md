@@ -1,6 +1,12 @@
 # Addis Software Test Project
 
+<div align="center">
+  <img src="/home.png" alt="Skillbridge Banner" width="100%" />
+
+ <p align="center">
 This test project evaluates your frontend development skills. It is a full-stack application where the frontend interacts with a REST API to manage a list of songs.
+</p>
+</div>
 
 ---
 
@@ -35,12 +41,14 @@ This test project evaluates your frontend development skills. It is a full-stack
 ## 🤖 AI Tool Policy
 
 ### AI Tools Used:
+
 - ChatGPT was used to:
   - Generate initial documentation structure
   - Assist in writing reusable CRUD logic with Redux-Saga
   - Improve Emotion styling patterns
 
 ### Verification of AI-Generated Code:
+
 - ✅ Manually debugged and tested every feature
 - ✅ Verified using console logs and error boundaries
 - ✅ Cross-checked types with TypeScript
@@ -66,13 +74,16 @@ npm  run start       # Starts production server
 ## 🚀 Bonus Features
 
 ### ✅ Deployment
+
 Frontend hosted on Vercel: [https://addis-songs-app.vercel.app]
 
 ### ✅ Testing
+
 - **Unit Testing**: Using Jest for utility and Redux slice tests
 - **Component Testing**: React Testing Library for form and table interactions
 
 ### ✅ Performance Optimizations
+
 - Code-splitting and lazy loading routes using React.lazy and Suspense
 - Tree shaking enabled in production Webpack build
 
@@ -84,20 +95,25 @@ git clone https://github.com/solobdev/addis-songs-app.git
 ```
 
 ### Navigate into the directory
+
 ```bash
 cd addis-songs-app
 ```
 
 ### Install dependencies
+
 ```bash
 npm install
 ```
 
 ### Start development server
+
 ```bash
 npm start
 ```
+
 ## 🙌 Thank You
+
 - This project was built to demonstrate practical frontend architecture, state management, and modular styling using best practices. Looking forward to your review.
 
 ## 📞 Contact
