@@ -18,5 +18,7 @@ export const theme = {
   },
 };
 
+
+
 export type ThemeMode = typeof theme.mode[number];
 export type ThemeType = typeof theme.light | typeof theme.dark;
