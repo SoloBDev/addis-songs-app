@@ -95,6 +95,8 @@ const ModalButton = styled.button<{ variant?: "cancel" | "confirm" }>`
 
 const SongList: React.FC = () => {
   const dispatch = useDispatch();
+const selectedArtist = useSelector((state: RootState) => state.songs.selectedArtist);
+
   const { songs, loading, error } = useSelector(
     (state: RootState) => state.songs
   );
@@ -133,7 +135,11 @@ const SongList: React.FC = () => {
     }
   };
 
-  const filteredSongs = songs.filter((song) => {
+const filteredSongs = songs
+  .filter((song) =>
+    selectedArtist ? song.artist === selectedArtist : true
+  )
+  .filter((song) => {
     const search = query.toLowerCase();
     return (
       song.title.toLowerCase().includes(search) ||

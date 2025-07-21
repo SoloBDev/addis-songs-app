@@ -12,18 +12,22 @@ export interface Song {
 
 interface SongsState {
   songs: Song[];
+  filteredSongs?: Song[];
   loading: boolean;
   error: string | null;
   lastFetch: number | null;
   currentSong: Song | null;
+  selectedArtist?: string | null;
 }
 
 const initialState: SongsState = {
   songs: [],
+  filteredSongs: [],
   loading: false,
   error: null,
   lastFetch: null,
   currentSong: null,
+  selectedArtist: null,
 };
 
 const songsSlice = createSlice({
@@ -45,13 +49,27 @@ const songsSlice = createSlice({
       state.loading = false;
     },
 
+    //handle filtering
+    filterSongsByArtist: (state, action: PayloadAction<string>) => {
+      const artist = action.payload;
+      state.filteredSongs = state.songs.filter(
+        (song) => song.artist === artist
+      );
+    },
+    clearArtistFilter: (state) => {
+      state.filteredSongs = state.songs;
+    },
+    setSelectedArtist: (state, action: PayloadAction<string | null>) => {
+      state.selectedArtist = action.payload;
+    },
+
     // Create actions
     createSongStart: (state, _action: PayloadAction<Omit<Song, "id">>) => {
       state.loading = true;
       state.error = null;
     },
     createSongSuccess: (state, action: PayloadAction<Song>) => {
-      state.songs.push(action.payload); 
+      state.songs.push(action.payload);
       state.loading = false;
     },
     createSongFailure: (state, action: PayloadAction<string>) => {
@@ -106,6 +124,9 @@ export const {
   fetchSongsStart,
   fetchSongsSuccess,
   fetchSongsFailure,
+  filterSongsByArtist,
+  clearArtistFilter,
+  setSelectedArtist,
   createSongStart,
   createSongSuccess,
   createSongFailure,
