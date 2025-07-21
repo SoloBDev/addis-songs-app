@@ -59,8 +59,8 @@ This test project evaluates your frontend development skills. It is a full-stack
 ### Scripts
 
 ```bash
-npm  build       # Builds for production
-npm  start       # Starts production server
+npm  run build       # Builds for production
+npm  run start       # Starts production server
 ```
 
 ## 🚀 Bonus Features
