@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Song } from '../redux/songs/songsSlice';
-import { ThemeType } from '../../theme';
-import { useThemeToggle } from '../theme/CustomThemeProvider';
+import React from "react";
+import styled from "@emotion/styled";
+import { Song } from "../redux/songs/songsSlice";
+import { ThemeType } from "../../theme";
+import { useThemeToggle } from "../theme/CustomThemeProvider";
 
 interface Props {
   song: Song;
@@ -19,9 +19,7 @@ const SongCard = styled.div<{ isProcessing?: boolean; theme: ThemeType }>`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
-  transition: 
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
   position: relative;
 
   &:hover {
@@ -78,7 +76,18 @@ const ActionButton = styled.button<{ theme: ThemeType }>`
   }
 `;
 
-const SongItem: React.FC<Props> = ({ song, onEdit, onDelete, isProcessing }) => {
+const BottomDetail = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SongItem: React.FC<Props> = ({
+  song,
+  onEdit,
+  onDelete,
+  isProcessing,
+}) => {
   const { currentTheme } = useThemeToggle();
 
   return (
@@ -88,7 +97,8 @@ const SongItem: React.FC<Props> = ({ song, onEdit, onDelete, isProcessing }) => 
       )}
 
       <SongTitle theme={currentTheme}>
-        {song.title} <span style={{ fontWeight: 'normal' }}>by {song.artist}</span>
+        {song.title}{" "}
+        <span style={{ fontWeight: "normal" }}>by {song.artist}</span>
       </SongTitle>
 
       <SongDetail theme={currentTheme}>
@@ -101,22 +111,27 @@ const SongItem: React.FC<Props> = ({ song, onEdit, onDelete, isProcessing }) => 
         <strong>Year:</strong> {song.year}
       </SongDetail>
 
-      <ActionButtons>
-        <ActionButton 
-          onClick={() => onEdit(song)} 
-          disabled={isProcessing}
-          theme={currentTheme}
-        >
-          Edit
-        </ActionButton>
-        <ActionButton 
-          onClick={() => onDelete(song.id)} 
-          disabled={isProcessing}
-          theme={currentTheme}
-        >
-          Delete
-        </ActionButton>
-      </ActionButtons>
+      <BottomDetail>
+        <ActionButtons>
+          <ActionButton
+            onClick={() => onEdit(song)}
+            disabled={isProcessing}
+            theme={currentTheme}
+          >
+            Edit
+          </ActionButton>
+          <ActionButton
+            onClick={() => onDelete(song.id)}
+            disabled={isProcessing}
+            theme={currentTheme}
+          >
+            Delete
+          </ActionButton>
+        </ActionButtons>
+        <SongDetail theme={currentTheme}>
+          <strong> {song.views?.toLocaleString() ?? 0} </strong>{" "}views
+        </SongDetail>
+      </BottomDetail>
     </SongCard>
   );
 };
