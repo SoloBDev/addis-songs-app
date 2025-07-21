@@ -160,7 +160,6 @@ const filteredSongs = songs
         >
           Add New Song
         </AddButton>
-        <ThemeToggle />
       </Header>
 
       {showForm && (
