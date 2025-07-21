@@ -24,6 +24,9 @@ const Header = styled.div`
     margin-top: .5em;
     margin-bottom: 1.2em;
   }
+
+  @media (min-width: 1280px) {
+  justify-content: space-around}
 `;
 
 const Title = styled.h2`
