@@ -3,11 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.tsx',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
     clean: true
+    publicPath: './',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -33,12 +35,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      filename: 'index.html',
+      inject: 'body',
     }),
     new Dotenv()
   ],
   devServer: {
-    static: './dist',
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
     historyApiFallback: true,
     hot: true,
     port: 3000

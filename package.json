@@ -10,6 +10,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.10.0",
     "lucide-react": "^0.525.0",
     "miragejs": "^0.1.42",
     "react": "^18.2.0",
