@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '', // important for Vercel relative paths
+    publicPath: '/', // important for Vercel relative paths
     clean: true
   },
   resolve: {
