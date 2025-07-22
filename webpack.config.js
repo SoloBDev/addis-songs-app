@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "./", // IMPORTANT for Netlify
+    publicPath: "/", // IMPORTANT for Netlify
     clean: true,
   },
   resolve: {
@@ -39,6 +39,6 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     open: true,
+    hot: true,
   },
-  mode: "development",
 };
