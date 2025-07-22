@@ -1,14 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  mode: 'production',
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    clean: true,
+    publicPath: '', // important for Vercel relative paths
+    clean: true
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -16,18 +15,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
       {
-
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
-
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
         type: 'asset/resource'
       }
     ]
@@ -35,16 +32,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-    }),
-    new Dotenv()
+      inject: 'body',
+    })
   ],
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist'),
-    },
-    historyApiFallback: true,
-    hot: true,
-    port: 3000
+    static: './dist',
+    historyApiFallback: true, // for React Router
+    port: 3000,
+    open: true,
   }
 };
-
