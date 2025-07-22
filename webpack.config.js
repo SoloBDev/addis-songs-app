@@ -1,45 +1,44 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
-  entry: './src/index.tsx',
+  entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/', // important for Vercel relative paths
-    clean: true
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: "./", // IMPORTANT for Netlify
+    clean: true,
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: [".tsx", ".ts", ".js"],
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: 'asset/resource'
-      }
-    ]
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      inject: 'body',
-    })
+      template: "./public/index.html", // Use your public/index.html
+    }),
   ],
   devServer: {
-    static: './dist',
-    historyApiFallback: true, // for React Router
+    static: path.join(__dirname, "dist"),
+    historyApiFallback: true,
     port: 3000,
     open: true,
-  }
+  },
+  mode: "development",
 };
